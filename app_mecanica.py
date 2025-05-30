@@ -25,22 +25,70 @@ def main(page: ft.Page):
             return resposta.json()
         else:
             return {"Erro": resposta.json()}
-
     get_info_cliente()
 
+    # Pega informações dos Veículos
+    def get_info_veiculo():
+        url = f"http://10.135.232.27:5001/veiculos"
+
+        resposta = requests.get(url)
+
+        if resposta.status_code == 200:
+            print("Info Veículos:", resposta.json())
+            return resposta.json()
+        else:
+            return {"Erro": resposta.json()}
+    get_info_veiculo()
+
+    # Pega informações das Ordens
+    def get_info_ordem():
+        url = f"http://10.135.232.27:5001/ordem"
+
+        resposta = requests.get(url)
+
+        if resposta.status_code == 200:
+            print("Info Ordens:", resposta.json())
+            return resposta.json()
+        else:
+            return {"Erro": resposta.json()}
+    get_info_ordem()
+
     # Consome e mostra o JSON no app
-    # Mostrar Cliente
+    # Mostrar Veículos
+    def mostrar_veiculos():
+        progress.visible = True
+        page.update()
+
+        # chamar a função para pegar o JSON
+        dados = get_info_veiculo()
+
+        progress.visible = False
+        page.update()
+
+        # Verificar se a API retornou erro
+        if "erro" in dados:
+            page.overlay.append(msg_erro)
+            msg_erro.open = True
+        else:
+            input_cliente_associado.value = dados["cliente_associado"]
+            input_modelo.value = dados["modelo"]
+            input_placa.value = dados["placa"]
+            input_ano_fabricacao.value = dados["ano_fabricacao"]
+            input_marca.value = dados["marca"]
+            page.go("/lista_veiculos")
+            msg_sucesso.content = ft.Text("Entrada Válida")
+            page.overlay.append(msg_sucesso)
+            msg_sucesso.open = True
+
+    page.update()
+
     def mostrar_clientes():
         progress.visible = True
         page.update()
 
         # chamar a função para pegar o JSON
         dados = get_info_cliente()
-        # nome = dados["nome"]
-        # cpf = dados["cpf"]
-        # telefone = dados["telefone"]
-        # email = dados["email"]
-        # endereco = dados["endereco"]
+
 
         progress.visible = False
         page.update()
@@ -55,15 +103,12 @@ def main(page: ft.Page):
             input_email.value = dados["email"]
             input_telefone.value = dados["telefone"]
             input_endereco.value = dados["endereco"]
-            page.go("/segunda")
+            page.go("/lista_clientes")
             msg_sucesso.content = ft.Text("Nome Valido")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
 
     page.update()
-
-
-    # FIM da exibição da lista
 
     # Gerencia o caminho das Rotas
     def gerencia_rotas(e):
@@ -109,7 +154,7 @@ def main(page: ft.Page):
                         # Irá salvar os Dados
                         ft.Button(
                             text="Salvar",
-                            on_click=lambda _: salvar_veiculo(e),
+                            on_click=lambda _: mostrar_veiculos(e),
                             bgcolor=Colors.PURPLE_900,
                         ),
                         # Irá mostrar os Dados
@@ -194,7 +239,7 @@ def main(page: ft.Page):
                         input_valor_estimado,
                         ft.Button(
                             text="Salvar",
-                            on_click=lambda _: salvar_ordem(e),
+                            on_click=lambda _: mostrar_ordens(e),
                             bgcolor=Colors.PURPLE_900,
                         ),
                         ft.Button(
