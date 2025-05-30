@@ -342,6 +342,7 @@ def main(page: ft.Page):
                         ft.Button(
                             text="Exibir lista",
                             on_click=lambda _: page.go("/lista_clientes"),
+                            bgcolor=Colors.PURPLE_900,
                         )
                     ]
                 )
@@ -378,6 +379,11 @@ def main(page: ft.Page):
                         ft.Button(
                             text="Salvar",
                             on_click=lambda _: page.go("lista_ordens"),
+                            bgcolor=Colors.PURPLE_900,
+                        ),
+                        ft.Button(
+                            text="Exibir lista",
+                            on_click=lambda _: page.go("/lista_ordens"),
                             bgcolor=Colors.PURPLE_900,
                         )
                     ]
