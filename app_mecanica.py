@@ -4,6 +4,7 @@ from flet.core.colors import Colors
 import requests
 from flet.core.types import FontWeight, MainAxisAlignment, CrossAxisAlignment
 
+
 # Main
 def main(page: ft.Page):
     # Configurações
@@ -13,6 +14,7 @@ def main(page: ft.Page):
     page.window.height = 667
 
     # Funções
+    # Pega informações dos Clientes
     def get_info_cliente(cliente):
         url = f"http://10.135.232.27:5001/clientes"
 
@@ -20,9 +22,34 @@ def main(page: ft.Page):
 
         if resposta.status_code == 200:
             print("Info Clientes:", resposta.json())
-            return  resposta.json()
+            return resposta.json()
         else:
             return {"Erro": resposta.json()}
+
+    # Pega informações dos Veículos
+    def get_info_veiculo(veiculo):
+        url = f"http://10.135.232.27:5001/veiculos"
+
+        resposta = requests.get(url)
+
+        if resposta.status_code == 200:
+            print("Info Veículos:", resposta.json())
+            return resposta.json()
+        else:
+            return {"Erro": resposta.json()}
+
+    # Pega informações das Ordens
+    def get_info_ordem(ordem):
+        url = f"http://10.135.232.27:5001/ordem"
+
+        resposta = requests.get(url)
+
+        if resposta.status_code == 200:
+            print("Info Ordens:", resposta.json())
+            return resposta.json()
+        else:
+            return {"Erro": resposta.json()}
+
     # Salva as informações dos veículos
     def salvar_veiculo(e):
         # Caso eles não possuam valores
@@ -297,25 +324,25 @@ def main(page: ft.Page):
         bgcolor=Colors.RED
     )
     # VEÍCULOS
-    input_cliente_associado = ft.TextField(label="Cliente Associado")
-    input_modelo = ft.TextField(label="Modelo")
-    input_placa = ft.TextField(label="Placa")
-    input_ano_fabricacao = ft.TextField(label="Ano de Fabricacao")
-    input_marca = ft.TextField(label="Marca")
+    input_cliente_associado = ft.TextField(label="Cliente Associado", bgcolor=Colors.DEEP_PURPLE)
+    input_modelo = ft.TextField(label="Modelo", bgcolor=Colors.DEEP_PURPLE)
+    input_placa = ft.TextField(label="Placa", bgcolor=Colors.DEEP_PURPLE)
+    input_ano_fabricacao = ft.TextField(label="Ano de Fabricacao", bgcolor=Colors.DEEP_PURPLE)
+    input_marca = ft.TextField(label="Marca", bgcolor=Colors.DEEP_PURPLE)
 
     # CLIENTES
-    input_nome = ft.TextField(label="Nome")
-    input_cpf = ft.TextField(label="CPF")
-    input_telefone = ft.TextField(label="Telefone")
-    input_endereco = ft.TextField(label="Endereço")
-    input_email = ft.TextField(label="E-mail")
+    input_nome = ft.TextField(label="Nome", bgcolor=Colors.DEEP_PURPLE)
+    input_cpf = ft.TextField(label="CPF", bgcolor=Colors.DEEP_PURPLE)
+    input_telefone = ft.TextField(label="Telefone", bgcolor=Colors.DEEP_PURPLE)
+    input_endereco = ft.TextField(label="Endereço", bgcolor=Colors.DEEP_PURPLE)
+    input_email = ft.TextField(label="E-mail", bgcolor=Colors.DEEP_PURPLE)
 
     # ORDENS
-    input_veiculo_associado = ft.TextField(label="Veículo Associado")
-    input_data_abertura = ft.TextField(label="Data abertura")
-    input_descricao_servico = ft.TextField(label="Descrição de Serviço")
-    input_status = ft.TextField(label="Status")
-    input_valor_estimado = ft.TextField(label="Valor Estimado")
+    input_veiculo_associado = ft.TextField(label="Veículo Associado", bgcolor=Colors.DEEP_PURPLE)
+    input_data_abertura = ft.TextField(label="Data abertura", bgcolor=Colors.DEEP_PURPLE)
+    input_descricao_servico = ft.TextField(label="Descrição de Serviço", bgcolor=Colors.DEEP_PURPLE)
+    input_status = ft.TextField(label="Status", bgcolor=Colors.DEEP_PURPLE)
+    input_valor_estimado = ft.TextField(label="Valor Estimado", bgcolor=Colors.DEEP_PURPLE)
     lv_nome = ft.ListView(
         height=500
     )
