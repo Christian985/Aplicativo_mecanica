@@ -191,7 +191,7 @@ def main(page: ft.Page):
                         # Irá mostrar os Dados
                         ft.Button(
                             text="Exibir lista",
-                            on_click=lambda _: page.go("/cadastro_veiculos"),
+                            on_click=lambda _: page.go("/lista_veiculos"),
                             bgcolor=Colors.PURPLE_900,
                         ),
                         ft.Column(
@@ -211,6 +211,7 @@ def main(page: ft.Page):
                     "/Lista_veiculos",
                     [
                         AppBar(title=Text("Lista de Veículos"), bgcolor=Colors.PURPLE_900),
+                        mostrar_veiculos(),
                         lv,
                         ft.Button(
                             text="Sair",
@@ -235,7 +236,6 @@ def main(page: ft.Page):
                         ft.Button(
                             text="Salvar",
                             on_click=lambda _: mostrar_clientes(e),
-                            col=6,
                             bgcolor=Colors.PURPLE_900,
                         ),
                         ft.Button(
