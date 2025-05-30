@@ -36,11 +36,12 @@ def main(page: ft.Page):
 
         # chamar a função para pegar o JSON
         dados = get_info_cliente()
-        nome = dados["nome"]
-        cpf = dados["cpf"]
-        telefone = dados["telefone"]
-        email = dados["email"]
-        endereco = dados["endereco"]
+        # nome = dados["nome"]
+        # cpf = dados["cpf"]
+        # telefone = dados["telefone"]
+        # email = dados["email"]
+        # endereco = dados["endereco"]
+
         progress.visible = False
         page.update()
 
@@ -49,7 +50,11 @@ def main(page: ft.Page):
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
-
+            input_nome.value = dados["nome"]
+            input_cpf.value = dados["cpf"]
+            input_email.value = dados["email"]
+            input_telefone.value = dados["telefone"]
+            input_endereco.value = dados["endereco"]
             page.go("/segunda")
             msg_sucesso.content = ft.Text("Nome Valido")
             page.overlay.append(msg_sucesso)
@@ -57,7 +62,6 @@ def main(page: ft.Page):
 
     page.update()
 
-    # FIM do salvamento de Clientes
 
     # Salva as informações das Ordens
     def salvar_ordem(e):
@@ -180,6 +184,7 @@ def main(page: ft.Page):
                         ft.Button(
                             text="Salvar",
                             on_click=lambda _: mostrar_clientes(e),
+                            col=6,
                             bgcolor=Colors.PURPLE_900,
                         ),
                         ft.Button(
