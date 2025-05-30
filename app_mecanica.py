@@ -31,14 +31,14 @@ def main(page: ft.Page):
     def mostrar_cliente():
         progress.visible = True
         page.update()
-        if input_cep.value == "":
-            msg_erro.content = ft.Text("CEP Invalido")
+        if input_nome.value == "":
+            msg_erro.content = ft.Text("Nome Inválido")
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
 
             # chamar a função para pegar o JSON
-            dados = get_info_cliente(int(input_cep.value))
+            dados = get_info_cliente(int(input_nome.value))
 
             progress.visible = False
             page.update()
@@ -52,8 +52,8 @@ def main(page: ft.Page):
                 txt_bairro.value = dados["bairro"]
                 page.go("/segunda")
 
-                input_cep.value = ""
-                msg_sucesso.content = ft.Text("CEP Valido")
+                input_nome.value = ""
+                msg_sucesso.content = ft.Text("Nome Valido")
                 page.overlay.append(msg_sucesso)
                 msg_sucesso.open = True
 
@@ -76,7 +76,7 @@ def main(page: ft.Page):
         progress.visible = True
         page.update()
         if input_cep.value == "":
-            msg_erro.content = ft.Text("CEP Invalido")
+            msg_erro.content = ft.Text("CEP Inválido")
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
