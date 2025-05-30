@@ -26,6 +26,22 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
+    # Consome e mostra o JSON no app
+    def mostrar():
+        progress.visible = True
+        page.update()
+        if input_cep.value == "":
+            msg_error.content = ft.Text("CEP Invalido")
+            page.overlay.append(msg_error)
+            msg_error.open = True
+        else:
+
+            # chamar a função para pegar o JSON
+            dados = get_info(int(input_cep.value))
+
+            progress.visible = False
+            page.update()
+
     # Pega informações dos Veículos
     def get_info_veiculo(veiculo):
         url = f"http://10.135.232.27:5001/veiculos"
@@ -315,6 +331,9 @@ def main(page: ft.Page):
     # FIM da seta de Voltar
 
     # Componentes
+    # Mostra que está carregando
+    progress = ft.ProgressRing(visible=False)
+
     msg_sucesso = ft.SnackBar(
         content=ft.Text("SALVOU"),
         bgcolor=Colors.GREEN
@@ -341,7 +360,7 @@ def main(page: ft.Page):
     input_veiculo_associado = ft.TextField(label="Veículo Associado", bgcolor=Colors.DEEP_PURPLE)
     input_data_abertura = ft.TextField(label="Data abertura", bgcolor=Colors.DEEP_PURPLE)
     input_descricao_servico = ft.TextField(label="Descrição de Serviço", bgcolor=Colors.DEEP_PURPLE)
-    input_status = ft.TextField(label="Status", bgcolor=Colors.DEEP_PURPLE)
+    input_status = ft.TextField(label="Status", hint_text="Ex: Em andamento", bgcolor=Colors.DEEP_PURPLE)
     input_valor_estimado = ft.TextField(label="Valor Estimado", bgcolor=Colors.DEEP_PURPLE)
     lv_nome = ft.ListView(
         height=500
