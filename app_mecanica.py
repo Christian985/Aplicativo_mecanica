@@ -15,7 +15,7 @@ def main(page: ft.Page):
 
     # Funções
     # Pega informações dos Clientes
-    def get_info_cliente(cliente):
+    def get_info_cliente():
         url = f"http://10.135.232.27:5001/clientes"
 
         resposta = requests.get(url)
@@ -26,192 +26,36 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
+    get_info_cliente()
+
     # Consome e mostra o JSON no app
     # Mostrar Cliente
-    def mostrar_cliente():
+    def mostrar_clientes():
         progress.visible = True
         page.update()
-        if input_nome.value == "":
-            msg_erro.content = ft.Text("Nome Inválido")
+
+        # chamar a função para pegar o JSON
+        dados = get_info_cliente()
+        nome = dados["nome"]
+        cpf = dados["cpf"]
+        telefone = dados["telefone"]
+        email = dados["email"]
+        endereco = dados["endereco"]
+        progress.visible = False
+        page.update()
+
+        # Verificar se a API retornou erro
+        if "erro" in dados:
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
 
-            # chamar a função para pegar o JSON
-            dados = get_info_cliente(int(input_nome.value))
-
-            progress.visible = False
-            page.update()
-
-            # Verificar se a API retornou erro
-            if "erro" in dados:
-                page.overlay.append(msg_erro)
-                msg_erro.open = True
-            else:
-                txt_rua.value = dados["logradouro"]
-                txt_bairro.value = dados["bairro"]
-                page.go("/segunda")
-
-                input_nome.value = ""
-                msg_sucesso.content = ft.Text("Nome Valido")
-                page.overlay.append(msg_sucesso)
-                msg_sucesso.open = True
-
-        page.update()
-
-    # Pega informações dos Veículos
-    def get_info_veiculo(veiculo):
-        url = f"http://10.135.232.27:5001/veiculos"
-
-        resposta = requests.get(url)
-
-        if resposta.status_code == 200:
-            print("Info Veículos:", resposta.json())
-            return resposta.json()
-        else:
-            return {"Erro": resposta.json()}
-
-    # Mostrar Veículo
-    def mostrar_veiculo():
-        progress.visible = True
-        page.update()
-        if input_cep.value == "":
-            msg_erro.content = ft.Text("CEP Inválido")
-            page.overlay.append(msg_erro)
-            msg_erro.open = True
-        else:
-
-            # chamar a função para pegar o JSON
-            dados = get_info_veiculo(int(input_cep.value))
-
-            progress.visible = False
-            page.update()
-
-            # Verificar se a API retornou erro
-            if "erro" in dados:
-                page.overlay.append(msg_erro)
-                msg_erro.open = True
-            else:
-                txt_rua.value = dados["logradouro"]
-                txt_bairro.value = dados["bairro"]
-                page.go("/segunda")
-
-                input_cep.value = ""
-                msg_sucesso.content = ft.Text("CEP Valido")
-                page.overlay.append(msg_sucesso)
-                msg_sucesso.open = True
-
-        page.update()
-
-    # Pega informações das Ordens
-    def get_info_ordem(ordem):
-        url = f"http://10.135.232.27:5001/ordem"
-
-        resposta = requests.get(url)
-
-        if resposta.status_code == 200:
-            print("Info Ordens:", resposta.json())
-            return resposta.json()
-        else:
-            return {"Erro": resposta.json()}
-
-    # Mostrar Ordem
-    def mostrar_ordem():
-        progress.visible = True
-        page.update()
-        if input_cep.value == "":
-            msg_erro.content = ft.Text("CEP Invalido")
-            page.overlay.append(msg_erro)
-            msg_erro.open = True
-        else:
-
-            # chamar a função para pegar o JSON
-            dados = get_info_ordem(int(input_cep.value))
-
-            progress.visible = False
-            page.update()
-
-            # Verificar se a API retornou erro
-            if "erro" in dados:
-                page.overlay.append(msg_erro)
-                msg_erro.open = True
-            else:
-                txt_rua.value = dados["logradouro"]
-                txt_bairro.value = dados["bairro"]
-                page.go("/segunda")
-
-                input_cep.value = ""
-                msg_sucesso.content = ft.Text("CEP Valido")
-                page.overlay.append(msg_sucesso)
-                msg_sucesso.open = True
-
-        page.update()
-
-    # Salva as informações dos veículos
-    def salvar_veiculo(e):
-        # Caso eles não possuam valores
-        if input_cliente_associado.value == "" or input_modelo.value == "" or input_placa.value == "" or input_ano_fabricacao.value == "" or input_marca.value == "":
-            # Overlay vai apagar a mensagem anterior
-            page.overlay.append(msg_erro)
-            # Vai abrir a mensagem
-            msg_erro.open = True
-            page.update()
-        else:
-            obj_veiculo = Veiculo(
-                cliente_associado=input_cliente_associado.value,
-                modelo=input_modelo.value,
-                placa=input_placa.value,
-                ano_fabricacao=input_ano_fabricacao.value,
-                marca=input_marca.value,
-
-            )
-            # Adiciona o Valor de cliente_associado, modelo, placa, ano_fabricacao e marca na Lista
-            input_cliente_associado.value = ""
-            input_modelo.value = ""
-            input_placa.value = ""
-            input_ano_fabricacao.value = ""
-            input_marca.value = ""
-            Local_session.add(obj_veiculo)
-            Local_session.commit()
-            # Overlay vai apagar a mensagem anterior
+            page.go("/segunda")
+            msg_sucesso.content = ft.Text("Nome Valido")
             page.overlay.append(msg_sucesso)
-            # Vai abrir a mensagem
             msg_sucesso.open = True
-            page.update()
 
-    # FIM do salvamento de Veículos
-
-    # Salva as informações dos Clientes
-    def salvar_cliente(e):
-        # Caso eles não possuam valores
-        if input_nome.value == "" or input_cpf.value == "" or input_email.value == "" or input_telefone.value == "" or input_endereco.value == "":
-            # Overlay vai apagar a mensagem anterior
-            page.overlay.append(msg_erro)
-            # Vai abrir a mensagem
-            msg_erro.open = True
-            page.update()
-        else:
-            obj_cliente = Cliente(
-                nome=input_nome.value,
-                cpf=input_cpf.value,
-                email=input_email.value,
-                telefone=input_telefone.value,
-                endereco=input_endereco.value,
-
-            )
-            # Adiciona o Valor de cliente_associado, modelo, placa, ano_fabricacao e marca na Lista
-            input_nome.value = ""
-            input_cpf.value = ""
-            input_email.value = ""
-            input_telefone.value = ""
-            input_endereco.value = ""
-            Local_session.add(obj_cliente)
-            Local_session.commit()
-            # Overlay vai apagar a mensagem anterior
-            page.overlay.append(msg_sucesso)
-            # Vai abrir a mensagem
-            msg_sucesso.open = True
-            page.update()
+    page.update()
 
     # FIM do salvamento de Clientes
 
@@ -239,8 +83,6 @@ def main(page: ft.Page):
             input_descricao_servico.value = ""
             input_status.value = ""
             input_valor_estimado.value = ""
-            Local_session.add(obj_ordem)
-            Local_session.commit()
             # Overlay vai apagar a mensagem anterior
             page.overlay.append(msg_sucesso)
             # Vai abrir a mensagem
@@ -261,6 +103,7 @@ def main(page: ft.Page):
                     AppBar(title=Text("Home"), bgcolor=Colors.PURPLE_900),
                     ft.Button(
                         text="Cadastrar Veículos",
+
                         on_click=lambda _: page.go("/cadastro_veiculos"),
                         bgcolor=Colors.PURPLE_900,
                     ),
@@ -268,6 +111,7 @@ def main(page: ft.Page):
                         text="Cadastrar Clientes",
                         on_click=lambda _: page.go("/cadastro_clientes"),
                         bgcolor=Colors.PURPLE_900,
+
                     ),
                     ft.Button(
                         text="Cadastrar Ordens",
@@ -312,8 +156,7 @@ def main(page: ft.Page):
                     "/Lista_veiculos",
                     [
                         AppBar(title=Text("Lista de Veículos"), bgcolor=Colors.PURPLE_900),
-                        salvar_veiculo,
-                        lv_nome,
+                        lv,
                         ft.Button(
                             text="Sair",
                             on_click=lambda _: page.go("/"),
@@ -336,7 +179,7 @@ def main(page: ft.Page):
                         input_email,
                         ft.Button(
                             text="Salvar",
-                            on_click=lambda _: salvar_cliente(e),
+                            on_click=lambda _: mostrar_clientes(e),
                             bgcolor=Colors.PURPLE_900,
                         ),
                         ft.Button(
@@ -349,13 +192,13 @@ def main(page: ft.Page):
             )
         # Lista de Clientes
         if page.route == "/lista_clientes":
+            mostrar_clientes()
             page.views.append(
                 View(
                     "/Lista_clientes",
                     [
                         AppBar(title=Text("Lista de Clientes"), bgcolor=Colors.PURPLE_900),
-                        salvar_cliente,
-                        lv_nome,
+                        lv,
                         ft.Button(
                             text="Sair",
                             on_click=lambda _: page.go("/"),
@@ -389,26 +232,25 @@ def main(page: ft.Page):
                     ]
                 )
             )
-            # Lista de Ordens
-            if page.route == "/lista_ordens":
-                page.views.append(
-                    View(
-                        "/Lista_ordens",
-                        [
-                            AppBar(title=Text("Lista de Ordens"), bgcolor=Colors.PURPLE_900),
-                            salvar_ordem,
-                            lv_nome,
-                            ft.Button(
-                                text="ir",
-                                on_click=lambda _: page.go("/"),
-                                bgcolor=Colors.PURPLE_900,
-                            )
-                        ],
-                    )
+        # Lista de Ordens
+        if page.route == "/lista_ordens":
+            page.views.append(
+                View(
+                    "/Lista_ordens",
+                    [
+                        AppBar(title=Text("Lista de Ordens"), bgcolor=Colors.PURPLE_900),
+                        lv,
+                        ft.Button(
+                            text="ir",
+                            on_click=lambda _: page.go("/"),
+                            bgcolor=Colors.PURPLE_900,
+                        )
+                    ],
                 )
+            )
         page.update()
 
-    # FIM da Transição de Páginas
+        # FIM da Transição de Páginas
 
     def voltar(e):
         page.views.pop()
@@ -449,7 +291,8 @@ def main(page: ft.Page):
     input_descricao_servico = ft.TextField(label="Descrição de Serviço", bgcolor=Colors.DEEP_PURPLE)
     input_status = ft.TextField(label="Status", hint_text="Ex: Em andamento", bgcolor=Colors.DEEP_PURPLE)
     input_valor_estimado = ft.TextField(label="Valor Estimado", bgcolor=Colors.DEEP_PURPLE)
-    lv_nome = ft.ListView(
+
+    lv = ft.ListView(
         height=500
     )
     # FIM dos Componentes
