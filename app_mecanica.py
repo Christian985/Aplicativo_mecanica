@@ -110,6 +110,32 @@ def main(page: ft.Page):
 
     page.update()
 
+    def mostrar_ordens():
+        progress.visible = True
+        page.update()
+
+        # chamar a função para pegar o JSON
+        dados = get_info_ordem()
+
+        progress.visible = False
+        page.update()
+
+        # Verificar se a API retornou erro
+        if "erro" in dados:
+            page.overlay.append(msg_erro)
+            msg_erro.open = True
+        else:
+            input_veiculo_associado.value = dados["veiculo_associado"]
+            input_data_abertura.value = dados["data_abertura"]
+            input_descricao_servico.value = dados["descricao_servico"]
+            input_status.value = dados["status"]
+            input_valor_estimado.value = dados["valor_estimado"]
+            page.go("/lista_ordens")
+            msg_sucesso.content = ft.Text("Nome Valido")
+            page.overlay.append(msg_sucesso)
+            msg_sucesso.open = True
+
+    page.update()
     # Gerencia o caminho das Rotas
     def gerencia_rotas(e):
         page.views.clear()
