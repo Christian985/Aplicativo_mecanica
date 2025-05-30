@@ -25,6 +25,7 @@ def main(page: ft.Page):
             return resposta.json()
         else:
             return {"Erro": resposta.json()}
+
     get_info_cliente()
 
     # Pega informações dos Veículos
@@ -38,6 +39,7 @@ def main(page: ft.Page):
             return resposta.json()
         else:
             return {"Erro": resposta.json()}
+
     get_info_veiculo()
 
     # Pega informações das Ordens
@@ -51,6 +53,7 @@ def main(page: ft.Page):
             return resposta.json()
         else:
             return {"Erro": resposta.json()}
+
     get_info_ordem()
 
     # Consome e mostra o JSON no app
@@ -88,7 +91,6 @@ def main(page: ft.Page):
 
         # chamar a função para pegar o JSON
         dados = get_info_cliente()
-
 
         progress.visible = False
         page.update()
@@ -136,6 +138,7 @@ def main(page: ft.Page):
             msg_sucesso.open = True
 
     page.update()
+
     # Gerencia o caminho das Rotas
     def gerencia_rotas(e):
         page.views.clear()
@@ -188,6 +191,13 @@ def main(page: ft.Page):
                             text="Exibir lista",
                             on_click=lambda _: page.go("/cadastro_veiculos"),
                             bgcolor=Colors.PURPLE_900,
+                        ),
+                        ft.Column(
+                            [
+                                progress
+                            ],
+                            width=page.window.width,
+                            horizontal_alignment=CrossAxisAlignment.CENTER
                         )
                     ],
                 )
