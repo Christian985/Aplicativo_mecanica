@@ -13,6 +13,16 @@ def main(page: ft.Page):
     page.window.height = 667
 
     # Funções
+    def get_info_cliente(cliente):
+        url = f"http://10.135.232.27:5001/clientes"
+
+        resposta = requests.get(url)
+
+        if resposta.status_code == 200:
+            print("Info Clientes:", resposta.json())
+            return  resposta.json()
+        else:
+            return {"Erro": resposta.json()}
     # Salva as informações dos veículos
     def salvar_veiculo(e):
         # Caso eles não possuam valores
