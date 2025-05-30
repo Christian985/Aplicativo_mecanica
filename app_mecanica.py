@@ -378,7 +378,7 @@ def main(page: ft.Page):
                         input_valor_estimado,
                         ft.Button(
                             text="Salvar",
-                            on_click=lambda _: page.go("lista_ordens"),
+                            on_click=lambda _: salvar_ordem(e),
                             bgcolor=Colors.PURPLE_900,
                         ),
                         ft.Button(
@@ -400,7 +400,7 @@ def main(page: ft.Page):
                             lv_nome,
                             ft.Button(
                                 text="ir",
-                                on_click=lambda _: page.go("/terceira"),
+                                on_click=lambda _: page.go("/"),
                                 bgcolor=Colors.PURPLE_900,
                             )
                         ],
