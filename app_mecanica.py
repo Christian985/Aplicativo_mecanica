@@ -14,6 +14,7 @@ def main(page: ft.Page):
     page.window.height = 667
 
     # Funções
+    # Consome e mostra o JSON no app
     # Pega informações dos Clientes
     def get_info_cliente():
         url = f"http://10.135.232.27:5001/clientes"
@@ -56,7 +57,6 @@ def main(page: ft.Page):
 
     get_info_ordem()
 
-    # Consome e mostra o JSON no app
     # Mostrar Veículos
     def mostrar_veiculos():
         progress.visible = True
@@ -85,6 +85,7 @@ def main(page: ft.Page):
 
     page.update()
 
+    # Mostrar Clientes
     def mostrar_clientes():
         progress.visible = True
         page.update()
@@ -112,6 +113,7 @@ def main(page: ft.Page):
 
     page.update()
 
+    # Mostrar Ordens
     def mostrar_ordens():
         progress.visible = True
         page.update()
@@ -310,8 +312,6 @@ def main(page: ft.Page):
         page.views.pop()
         top_view = page.views[-1]
         page.go(top_view.route)
-
-    # FIM da seta de Voltar
 
     # Componentes
     # Mostra que está carregando
