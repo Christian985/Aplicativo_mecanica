@@ -63,38 +63,6 @@ def main(page: ft.Page):
     page.update()
 
 
-    # Salva as informações das Ordens
-    def salvar_ordem(e):
-        # Caso eles não possuam valores
-        if input_veiculo_associado.value == "" or input_data_abertura.value == "" or input_descricao_servico.value == "" or input_status.value == "" or input_valor_estimado.value == "":
-            # Overlay vai apagar a mensagem anterior
-            page.overlay.append(msg_erro)
-            # Vai abrir a mensagem
-            msg_erro.open = True
-            page.update()
-        else:
-            obj_ordem = Ordem(
-                veiculo_associado=input_veiculo_associado.value,
-                data_abertura=input_data_abertura.value,
-                descricao_servico=input_descricao_servico.value,
-                status=input_status.value,
-                valor_estimado=input_valor_estimado.value,
-
-            )
-            # Adiciona o Valor de veiculo_associado, data_abertura, descricao_servico, status e valor_estimado na Lista
-            input_veiculo_associado.value = ""
-            input_data_abertura.value = ""
-            input_descricao_servico.value = ""
-            input_status.value = ""
-            input_valor_estimado.value = ""
-            # Overlay vai apagar a mensagem anterior
-            page.overlay.append(msg_sucesso)
-            # Vai abrir a mensagem
-            msg_sucesso.open = True
-            page.update()
-
-    # FIM do salvamento das Ordens
-
     # FIM da exibição da lista
 
     # Gerencia o caminho das Rotas
