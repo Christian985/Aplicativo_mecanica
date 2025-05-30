@@ -27,20 +27,37 @@ def main(page: ft.Page):
             return {"Erro": resposta.json()}
 
     # Consome e mostra o JSON no app
-    def mostrar():
+    # Mostrar Cliente
+    def mostrar_cliente():
         progress.visible = True
         page.update()
         if input_cep.value == "":
-            msg_error.content = ft.Text("CEP Invalido")
-            page.overlay.append(msg_error)
-            msg_error.open = True
+            msg_erro.content = ft.Text("CEP Invalido")
+            page.overlay.append(msg_erro)
+            msg_erro.open = True
         else:
 
             # chamar a função para pegar o JSON
-            dados = get_info(int(input_cep.value))
+            dados = get_info_cliente(int(input_cep.value))
 
             progress.visible = False
             page.update()
+
+            # Verificar se a API retornou erro
+            if "erro" in dados:
+                page.overlay.append(msg_erro)
+                msg_erro.open = True
+            else:
+                txt_rua.value = dados["logradouro"]
+                txt_bairro.value = dados["bairro"]
+                page.go("/segunda")
+
+                input_cep.value = ""
+                msg_sucesso.content = ft.Text("CEP Valido")
+                page.overlay.append(msg_sucesso)
+                msg_sucesso.open = True
+
+        page.update()
 
     # Pega informações dos Veículos
     def get_info_veiculo(veiculo):
@@ -54,6 +71,38 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
+    # Mostrar Veículo
+    def mostrar_veiculo():
+        progress.visible = True
+        page.update()
+        if input_cep.value == "":
+            msg_erro.content = ft.Text("CEP Invalido")
+            page.overlay.append(msg_erro)
+            msg_erro.open = True
+        else:
+
+            # chamar a função para pegar o JSON
+            dados = get_info_veiculo(int(input_cep.value))
+
+            progress.visible = False
+            page.update()
+
+            # Verificar se a API retornou erro
+            if "erro" in dados:
+                page.overlay.append(msg_erro)
+                msg_erro.open = True
+            else:
+                txt_rua.value = dados["logradouro"]
+                txt_bairro.value = dados["bairro"]
+                page.go("/segunda")
+
+                input_cep.value = ""
+                msg_sucesso.content = ft.Text("CEP Valido")
+                page.overlay.append(msg_sucesso)
+                msg_sucesso.open = True
+
+        page.update()
+
     # Pega informações das Ordens
     def get_info_ordem(ordem):
         url = f"http://10.135.232.27:5001/ordem"
@@ -65,6 +114,38 @@ def main(page: ft.Page):
             return resposta.json()
         else:
             return {"Erro": resposta.json()}
+
+    # Mostrar Veículo
+    def mostrar_ordem():
+        progress.visible = True
+        page.update()
+        if input_cep.value == "":
+            msg_erro.content = ft.Text("CEP Invalido")
+            page.overlay.append(msg_erro)
+            msg_erro.open = True
+        else:
+
+            # chamar a função para pegar o JSON
+            dados = get_info_ordem(int(input_cep.value))
+
+            progress.visible = False
+            page.update()
+
+            # Verificar se a API retornou erro
+            if "erro" in dados:
+                page.overlay.append(msg_erro)
+                msg_erro.open = True
+            else:
+                txt_rua.value = dados["logradouro"]
+                txt_bairro.value = dados["bairro"]
+                page.go("/segunda")
+
+                input_cep.value = ""
+                msg_sucesso.content = ft.Text("CEP Valido")
+                page.overlay.append(msg_sucesso)
+                msg_sucesso.open = True
+
+        page.update()
 
     # Salva as informações dos veículos
     def salvar_veiculo(e):
