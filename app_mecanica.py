@@ -288,7 +288,7 @@ def main(page: ft.Page):
             )
         # Lista de Clientes
         if page.route == "/lista_clientes":
-            mostrar_clientes()
+            mostrar_clientes(e)
             page.views.append(
                 View(
                     "/Lista_clientes",
@@ -330,6 +330,7 @@ def main(page: ft.Page):
             )
         # Lista de Ordens
         if page.route == "/lista_ordens":
+            mostrar_ordens(e)
             page.views.append(
                 View(
                     "/Lista_ordens",
