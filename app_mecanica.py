@@ -108,7 +108,7 @@ def main(page: ft.Page):
             msg_erro.open = True
         else:
             lv_cliente.controls.clear()
-            for cliente in dados:
+            for cliente in dados['lista_de_clientes']:
                 lv_cliente.controls.append(
                     ft.Text(f'Nome: {cliente["nome"]}'),
                 )
