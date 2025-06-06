@@ -41,7 +41,7 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
-    get_info_veiculo()
+    # get_info_veiculo()
 
     # Pega informações das Ordens
     def get_info_ordem():
@@ -73,19 +73,24 @@ def main(page: ft.Page):
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
-            input_cliente_associado.value = dados["cliente_associado"]
-            input_modelo.value = dados["modelo"]
-            input_placa.value = dados["placa"]
-            input_ano_fabricacao.value = dados["ano_fabricacao"]
-            input_marca.value = dados["marca"]
+            lv_veiculo.controls.clear()
+            for veiculo in dados:
+                lv_veiculo.controls.append(
+                    ft.Text(f'Cliente Associado: {veiculo["cliente_associado"]}'),
+                    ft.Text(f'Modelo: {veiculo["modelo"]}'),
+                    ft.Text(f'Placa: {veiculo["placa"]}'),
+                    ft.Text(f'Ano de Fabricação: {veiculo["ano_fabricacao"]}'),
+                    ft.Text(f'Marca: {veiculo["marca"]}'),
+                )
+
             msg_sucesso.content = ft.Text("Entrada Válida")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
 
-    page.update()
+        page.update()
 
     # Mostrar Clientes
-    def mostrar_clientes():
+    def mostrar_clientes(e):
         progress.visible = True
         page.update()
 
@@ -112,13 +117,12 @@ def main(page: ft.Page):
     page.update()
 
     # Mostrar Ordens
-    def mostrar_ordens():
+    def mostrar_ordens(e):
         progress.visible = True
         page.update()
 
         # chamar a função para pegar o JSON
         dados = get_info_ordem()
-
 
         progress.visible = False
         page.update()
@@ -128,11 +132,11 @@ def main(page: ft.Page):
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
-            input_veiculo_associado.value = dados["veiculo_associado"]
-            input_data_abertura.value = dados["data_abertura"]
-            input_descricao_servico.value = dados["descricao_servico"]
-            input_status.value = dados["status"]
-            input_valor_estimado.value = dados["valor_estimado"]
+            for user in dados:
+                lv.controls.append(
+                    ft.Text(value=f'Veiculo: {user["veiculo"]}')
+                )
+
             msg_sucesso.content = ft.Text("Nome Valido")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
@@ -210,9 +214,9 @@ def main(page: ft.Page):
                     "/Lista_veiculos",
                     [
                         AppBar(title=Text("Lista de Veículos"), bgcolor=Colors.PURPLE_900),
-                        lv,
+                        lv_veiculo,
                         ft.Button(
-                            text="Sair",
+                            text="Voltar",
                             on_click=lambda _: page.go("/"),
                             bgcolor=Colors.PURPLE_900,
                         )
@@ -252,9 +256,9 @@ def main(page: ft.Page):
                     "/Lista_clientes",
                     [
                         AppBar(title=Text("Lista de Clientes"), bgcolor=Colors.PURPLE_900),
-                        lv,
+                        lv_cliente,
                         ft.Button(
-                            text="Sair",
+                            text="Voltar",
                             on_click=lambda _: page.go("/"),
                             bgcolor=Colors.PURPLE_900,
                         )
@@ -293,9 +297,9 @@ def main(page: ft.Page):
                     "/Lista_ordens",
                     [
                         AppBar(title=Text("Lista de Ordens"), bgcolor=Colors.PURPLE_900),
-                        lv,
+                        lv_ordem,
                         ft.Button(
-                            text="ir",
+                            text="Voltar",
                             on_click=lambda _: page.go("/"),
                             bgcolor=Colors.PURPLE_900,
                         )
@@ -344,7 +348,7 @@ def main(page: ft.Page):
     input_status = ft.TextField(label="Status", hint_text="Ex: Em andamento", bgcolor=Colors.DEEP_PURPLE)
     input_valor_estimado = ft.TextField(label="Valor Estimado", bgcolor=Colors.DEEP_PURPLE)
 
-    lv = ft.ListView(
+    lv_veiculo = ft.ListView(
         height=500
 
     )
