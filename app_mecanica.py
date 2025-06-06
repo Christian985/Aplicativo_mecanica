@@ -70,21 +70,21 @@ def main(page: ft.Page):
             lv_veiculo.controls.clear()
             for veiculo in dados:
                 lv_veiculo.controls.append(
-                    ft.Text(f'Cliente Associado: {veiculo["cliente_associado"]}'),
+                    ft.ListTile(
+                        leading=ft.Icon(ft.Icons.PERSON),
+                        title=ft.Text(f"Cliente Associado - {input_cliente_associado.value}"),
+                        trailing=ft.PopupMenuButton(
+                            icon=ft.Icons.MORE_VERT,
+                            items=[
+                                ft.PopupMenuItem(text=f"Modelo - {input_modelo.value}"),
+                                ft.PopupMenuItem(text=f"Placa: - {input_placa.value}"),
+                                ft.PopupMenuItem(text=f"Ano de Fabricação - {input_ano_fabricacao.value}"),
+                                ft.PopupMenuItem(text=f"Modelo - {input_modelo.value}"),
+                                ft.PopupMenuItem(text=f"Marca: - {input_marca.value}"),
+                            ]
+                        )
+                    )
                 )
-                lv_veiculo.controls.append(
-                    ft.Text(f'Modelo: {veiculo["modelo"]}'),
-                )
-                lv_veiculo.controls.append(
-                    ft.Text(f'Placa: {veiculo["placa"]}'),
-                )
-                lv_veiculo.controls.append(
-                    ft.Text(f'Ano de Fabricação: {veiculo["ano_fabricacao"]}'),
-                )
-                lv_veiculo.controls.append(
-                    ft.Text(f'Marca: {veiculo["marca"]}'),
-                )
-
             msg_sucesso.content = ft.Text("Entrada Válida")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
@@ -148,7 +148,7 @@ def main(page: ft.Page):
             msg_erro.open = True
         else:
             lv_ordem.controls.clear()
-            for ordem in dados:
+            for ordem in dados["lista_de_ordens"]:
                 lv_ordem.controls.append(
                     ft.Text(f'Veículo Associado: {ordem["veiculo_associado"]}'),
                 )
