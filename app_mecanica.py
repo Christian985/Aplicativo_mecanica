@@ -128,9 +128,9 @@ def main(page: ft.Page):
                     ft.Text(f'Endereço: {cliente["endereco"]}'),
                 )
 
-                msg_sucesso.content = ft.Text("Entrada Válida")
-                page.overlay.append(msg_sucesso)
-                msg_sucesso.open = True
+            msg_sucesso.content = ft.Text("Entrada Válida")
+            page.overlay.append(msg_sucesso)
+            msg_sucesso.open = True
 
         page.update()
 
