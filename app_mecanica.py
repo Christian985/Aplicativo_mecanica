@@ -77,9 +77,17 @@ def main(page: ft.Page):
             for veiculo in dados:
                 lv_veiculo.controls.append(
                     ft.Text(f'Cliente Associado: {veiculo["cliente_associado"]}'),
+                )
+                lv_veiculo.controls.append(
                     ft.Text(f'Modelo: {veiculo["modelo"]}'),
+                )
+                lv_veiculo.controls.append(
                     ft.Text(f'Placa: {veiculo["placa"]}'),
+                )
+                lv_veiculo.controls.append(
                     ft.Text(f'Ano de Fabricação: {veiculo["ano_fabricacao"]}'),
+                )
+                lv_veiculo.controls.append(
                     ft.Text(f'Marca: {veiculo["marca"]}'),
                 )
 
