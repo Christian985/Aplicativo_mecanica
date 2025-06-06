@@ -379,7 +379,7 @@ def main(page: ft.Page):
     input_data_abertura = ft.TextField(label="Data abertura", bgcolor=Colors.DEEP_PURPLE)
     input_descricao_servico = ft.TextField(label="Descrição de Serviço", bgcolor=Colors.DEEP_PURPLE)
     input_status = ft.TextField(label="Status", hint_text="Ex: Em andamento", bgcolor=Colors.DEEP_PURPLE)
-    input_valor_estimado = ft.TextField(label="Valor Estimado", bgcolor=Colors.DEEP_PURPLE)
+    input_valor_estimado = ft.TextField(label="Valor Estimado", hint_text="$", bgcolor=Colors.DEEP_PURPLE)
 
     lv_veiculo = ft.ListView(
         height=500
