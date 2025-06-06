@@ -113,14 +113,27 @@ def main(page: ft.Page):
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
-            input_nome.value = dados["nome"]
-            input_cpf.value = dados["cpf"]
-            input_email.value = dados["email"]
-            input_telefone.value = dados["telefone"]
-            input_endereco.value = dados["endereco"]
-            msg_sucesso.content = ft.Text("Nome Valido")
-            page.overlay.append(msg_sucesso)
-            msg_sucesso.open = True
+            lv_veiculo.controls.clear()
+            for cliente in dados:
+                lv_cliente.controls.append(
+                    ft.Text(f'Nome: {cliente["nome"]}'),
+                )
+                lv_cliente.controls.append(
+                    ft.Text(f'Cpf: {cliente["cpf"]}'),
+                )
+                lv_cliente.controls.append(
+                    ft.Text(f'Email: {cliente["email"]}'),
+                )
+                lv_cliente.controls.append(
+                    ft.Text(f'Telefone: {cliente["telefone"]}'),
+                )
+                lv_cliente.controls.append(
+                    ft.Text(f'Endereço: {cliente["endereco"]}'),
+                )
+
+                msg_sucesso.content = ft.Text("Entrada Válida")
+                page.overlay.append(msg_sucesso)
+                msg_sucesso.open = True
 
     page.update()
 
@@ -140,9 +153,26 @@ def main(page: ft.Page):
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
-            for user in dados:
-                lv.controls.append(
-                    ft.Text(value=f'Veiculo: {user["veiculo"]}')
+            lv_ordem.controls.clear()
+            for ordem in dados:
+                lv_ordem.controls.append(
+                    ft.Text(f'Veículo Associado: {ordem["veiculo_associado"]}'),
+                )
+
+                lv_ordem.controls.append(
+                    ft.Text(f'Data de Abertura: {ordem["data_abertura"]}'),
+                )
+
+                lv_ordem.controls.append(
+                    ft.Text(f'Descrição do Serviço: {ordem["descricao_servico"]}'),
+                )
+
+                lv_ordem.controls.append(
+                    ft.Text(f'Status: {ordem["status"]}'),
+                )
+
+                lv_ordem.controls.append(
+                    ft.Text(f'Valor Estimado: {ordem["valor_estimado"]}'),
                 )
 
             msg_sucesso.content = ft.Text("Nome Valido")
@@ -357,6 +387,16 @@ def main(page: ft.Page):
     input_valor_estimado = ft.TextField(label="Valor Estimado", bgcolor=Colors.DEEP_PURPLE)
 
     lv_veiculo = ft.ListView(
+        height=500
+
+    )
+
+    lv_cliente = ft.ListView(
+        height=500
+
+    )
+
+    lv_ordem = ft.ListView(
         height=500
 
     )
