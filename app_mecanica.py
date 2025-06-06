@@ -172,7 +172,7 @@ def main(page: ft.Page):
                     ft.Text(f'Valor Estimado: {ordem["valor_estimado"]}'),
                 )
 
-            msg_sucesso.content = ft.Text("Nome Valido")
+            msg_sucesso.content = ft.Text("Entrada Válida")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
 
