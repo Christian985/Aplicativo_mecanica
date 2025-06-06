@@ -121,6 +121,7 @@ def main(page: ft.Page):
         # chamar a função para pegar o JSON
         dados = get_info_ordem()
 
+
         progress.visible = False
         page.update()
 
@@ -348,6 +349,7 @@ def main(page: ft.Page):
 
     lv = ft.ListView(
         height=500
+
     )
     # FIM dos Componentes
 
