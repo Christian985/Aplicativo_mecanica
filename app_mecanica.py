@@ -27,7 +27,6 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
-
     # Pega informações dos Veículos
     def get_info_veiculo():
         url = f"http://10.135.232.27:5001/veiculos"
@@ -40,7 +39,6 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
-
     # Pega informações das Ordens
     def get_info_ordem():
         url = f"http://10.135.232.27:5001/ordem"
@@ -52,7 +50,6 @@ def main(page: ft.Page):
             return resposta.json()
         else:
             return {"Erro": resposta.json()}
-
 
     # Mostrar Veículos
     def mostrar_veiculos(e):
