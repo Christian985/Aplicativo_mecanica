@@ -58,7 +58,7 @@ def main(page: ft.Page):
     get_info_ordem()
 
     # Mostrar Veículos
-    def mostrar_veiculos():
+    def mostrar_veiculos(e):
         progress.visible = True
         page.update()
 
@@ -78,7 +78,6 @@ def main(page: ft.Page):
             input_placa.value = dados["placa"]
             input_ano_fabricacao.value = dados["ano_fabricacao"]
             input_marca.value = dados["marca"]
-            page.go("/lista_veiculos")
             msg_sucesso.content = ft.Text("Entrada Válida")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
@@ -106,7 +105,6 @@ def main(page: ft.Page):
             input_email.value = dados["email"]
             input_telefone.value = dados["telefone"]
             input_endereco.value = dados["endereco"]
-            page.go("/lista_clientes")
             msg_sucesso.content = ft.Text("Nome Valido")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
@@ -135,7 +133,6 @@ def main(page: ft.Page):
             input_descricao_servico.value = dados["descricao_servico"]
             input_status.value = dados["status"]
             input_valor_estimado.value = dados["valor_estimado"]
-            page.go("/lista_ordens")
             msg_sucesso.content = ft.Text("Nome Valido")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
@@ -207,12 +204,12 @@ def main(page: ft.Page):
             )
         # Lista de Veículos
         if page.route == "/lista_veiculos":
+            mostrar_veiculos(e)
             page.views.append(
                 View(
                     "/Lista_veiculos",
                     [
                         AppBar(title=Text("Lista de Veículos"), bgcolor=Colors.PURPLE_900),
-                        mostrar_veiculos(),
                         lv,
                         ft.Button(
                             text="Sair",
