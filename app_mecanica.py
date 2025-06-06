@@ -27,7 +27,6 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
-    get_info_cliente()
 
     # Pega informações dos Veículos
     def get_info_veiculo():
@@ -41,7 +40,6 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
-    # get_info_veiculo()
 
     # Pega informações das Ordens
     def get_info_ordem():
@@ -55,7 +53,6 @@ def main(page: ft.Page):
         else:
             return {"Erro": resposta.json()}
 
-    get_info_ordem()
 
     # Mostrar Veículos
     def mostrar_veiculos(e):
@@ -113,7 +110,7 @@ def main(page: ft.Page):
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
-            lv_veiculo.controls.clear()
+            lv_cliente.controls.clear()
             for cliente in dados:
                 lv_cliente.controls.append(
                     ft.Text(f'Nome: {cliente["nome"]}'),
@@ -135,7 +132,7 @@ def main(page: ft.Page):
                 page.overlay.append(msg_sucesso)
                 msg_sucesso.open = True
 
-    page.update()
+        page.update()
 
     # Mostrar Ordens
     def mostrar_ordens(e):
@@ -179,7 +176,7 @@ def main(page: ft.Page):
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
 
-    page.update()
+        page.update()
 
     # Gerencia o caminho das Rotas
     def gerencia_rotas(e):
