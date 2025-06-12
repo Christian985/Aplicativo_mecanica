@@ -147,7 +147,7 @@ def main(page: ft.Page):
             msg_erro.open = True
         else:
             lv_ordem.controls.clear()
-            for ordem in dados["lista_de_ordens"]:
+            for ordem in dados:
                 lv_ordem.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
