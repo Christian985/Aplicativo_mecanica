@@ -151,7 +151,7 @@ def main(page: ft.Page):
                 lv_ordem.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Veículo - {ordem['veiculo_associado']}"),
+                        title=ft.Text(f"Ordem/Veículo - {ordem['veiculo_associado']}"),
                         subtitle=ft.Text(f"Data de Abertura - {ordem['data_abertura']}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
@@ -220,7 +220,7 @@ def main(page: ft.Page):
                         # Irá salvar os Dados
                         ft.Button(
                             text="Salvar",
-                            on_click=lambda _: mostrar_veiculos(e),
+                            on_click=lambda _: get_info_veiculo,
                             bgcolor=Colors.PURPLE_900,
                             height=50,
                             width=340,
