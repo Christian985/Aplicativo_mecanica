@@ -276,7 +276,7 @@ def main(page: ft.Page):
                         input_email,
                         ft.Button(
                             text="Salvar",
-                            on_click=lambda _: mostrar_clientes(e),
+                            on_click=lambda _: get_info_cliente,
                             bgcolor=Colors.PURPLE_900,
                             height=50,
                             width=340,
@@ -324,7 +324,7 @@ def main(page: ft.Page):
                         input_valor_estimado,
                         ft.Button(
                             text="Salvar",
-                            on_click=lambda _: mostrar_ordens(e),
+                            on_click=lambda _: get_info_ordem,
                             bgcolor=Colors.PURPLE_900,
                             height=50,
                             width=340,
