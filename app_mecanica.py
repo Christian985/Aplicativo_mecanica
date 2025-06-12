@@ -57,7 +57,7 @@ def main(page: ft.Page):
         progress.visible = True
         page.update()
 
-        # chamar a função para pegar o JSON
+        # Chamar a função para pegar o JSON
         veiculos = get_info_veiculo()
 
         progress.visible = False
@@ -96,7 +96,7 @@ def main(page: ft.Page):
         progress.visible = True
         page.update()
 
-        # chamar a função para pegar o JSON
+        # Chamar a função para pegar o JSON
         clientes = get_info_cliente()
 
         progress.visible = False
