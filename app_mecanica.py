@@ -1,5 +1,6 @@
 import flet as ft
 from flet import AppBar, Text, View
+from flet.core.alignment import center_left
 from flet.core.colors import Colors
 import requests
 from flet.core.types import FontWeight, MainAxisAlignment, CrossAxisAlignment
@@ -57,22 +58,23 @@ def main(page: ft.Page):
         page.update()
 
         # chamar a função para pegar o JSON
-        dados = get_info_veiculo()
+        veiculos = get_info_veiculo()
 
         progress.visible = False
         page.update()
 
         # Verificar se a API retornou erro
-        if "erro" in dados:
+        if "erro" in veiculos:
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
             lv_veiculo.controls.clear()
-            for veiculo in dados:
+            for veiculo in veiculos:
                 lv_veiculo.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Veículo - {input_cliente_associado.value}"),
+                        title=ft.Text(f"Veículo - {veiculo['modelo']}"),
+                        subtitle=ft.Text(f"cliente - {veiculo['cliente_associado']}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
@@ -96,26 +98,26 @@ def main(page: ft.Page):
         page.update()
 
         # chamar a função para pegar o JSON
-        dados = get_info_cliente()
+        clientes = get_info_cliente()
 
         progress.visible = False
         page.update()
 
         # Verificar se a API retornou erro
-        if "erro" in dados:
+        if "erro" in clientes:
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
             lv_cliente.controls.clear()
-            for cliente in dados:
+            for cliente in clientes:
                 lv_cliente.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Cliente - {input_nome.value}"),
+                        title=ft.Text(f"Cliente - {cliente['nome']}"),
+                        subtitle=ft.Text(f"CPF - {cliente['cpf']}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"CPF - {input_cpf.value}"),
                                 ft.PopupMenuItem(text=f"Email - {input_email.value}"),
                                 ft.PopupMenuItem(text=f"Telefone - {input_telefone.value}"),
                                 ft.PopupMenuItem(text=f"Endereço - {input_endereco.value}"),
