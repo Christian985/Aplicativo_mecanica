@@ -76,7 +76,6 @@ def main(page: ft.Page):
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Cliente Associado - {input_cliente_associado.value}"),
                                 ft.PopupMenuItem(text=f"Modelo - {input_modelo.value}"),
                                 ft.PopupMenuItem(text=f"Placa: - {input_placa.value}"),
                                 ft.PopupMenuItem(text=f"Ano de Fabricação - {input_ano_fabricacao.value}"),
@@ -152,7 +151,7 @@ def main(page: ft.Page):
                 lv_ordem.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Ordem {input_veiculo_associado.value}"),
+                        title=ft.Text(f"Ordem - {input_veiculo_associado.value}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
@@ -377,17 +376,23 @@ def main(page: ft.Page):
     input_valor_estimado = ft.TextField(label="Valor Estimado", hint_text="$", bgcolor=Colors.DEEP_PURPLE)
 
     lv_veiculo = ft.ListView(
-        height=500
+        height=500,
+        spacing=1,
+        divider_thickness=1
 
     )
 
     lv_cliente = ft.ListView(
-        height=500
+        height=500,
+        spacing = 1,
+        divider_thickness = 1
 
     )
 
     lv_ordem = ft.ListView(
-        height=500
+        height=500,
+        spacing=1,
+        divider_thickness=1
 
     )
     # FIM dos Componentes
