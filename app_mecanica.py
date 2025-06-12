@@ -78,9 +78,9 @@ def main(page: ft.Page):
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Placa - {input_placa.value}"),
-                                ft.PopupMenuItem(text=f"Ano de Fabricação - {input_ano_fabricacao.value}"),
-                                ft.PopupMenuItem(text=f"Marca - {input_marca.value}"),
+                                ft.PopupMenuItem(text=f"Placa - {veiculo['placa']}"),
+                                ft.PopupMenuItem(text=f"Ano de Fabricação - {veiculo['ano_fabricacao']}"),
+                                ft.PopupMenuItem(text=f"Marca - {veiculo['marca']}"),
                             ]
                         )
                     )
@@ -117,9 +117,9 @@ def main(page: ft.Page):
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Email - {input_email.value}"),
-                                ft.PopupMenuItem(text=f"Telefone - {input_telefone.value}"),
-                                ft.PopupMenuItem(text=f"Endereço - {input_endereco.value}"),
+                                ft.PopupMenuItem(text=f"Email - {cliente['email']}"),
+                                ft.PopupMenuItem(text=f"Telefone - {cliente['telefone']}"),
+                                ft.PopupMenuItem(text=f"Endereço - {cliente['endereco']}"),
                             ]
                         )
                     )
@@ -156,9 +156,9 @@ def main(page: ft.Page):
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Descrição do Serviço - {input_descricao_servico.value}"),
-                                ft.PopupMenuItem(text=f"Status - {input_status.value}"),
-                                ft.PopupMenuItem(text=f"Valor Estimado - {input_valor_estimado.value}"),
+                                ft.PopupMenuItem(text=f"Descrição do Serviço - {ordem['descricao_servico']}"),
+                                ft.PopupMenuItem(text=f"Status - {ordem['status']}"),
+                                ft.PopupMenuItem(text=f"Valor Estimado - {ordem['valor_estimado']}"),
                             ]
                         )
                     )
