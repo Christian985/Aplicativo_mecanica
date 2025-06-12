@@ -79,7 +79,6 @@ def main(page: ft.Page):
                                 ft.PopupMenuItem(text=f"Modelo - {input_modelo.value}"),
                                 ft.PopupMenuItem(text=f"Placa: - {input_placa.value}"),
                                 ft.PopupMenuItem(text=f"Ano de Fabricação - {input_ano_fabricacao.value}"),
-                                ft.PopupMenuItem(text=f"Modelo - {input_modelo.value}"),
                                 ft.PopupMenuItem(text=f"Marca: - {input_marca.value}"),
                             ]
                         )
