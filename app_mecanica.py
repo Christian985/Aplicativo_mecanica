@@ -78,7 +78,6 @@ def main(page: ft.Page):
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Modelo - {input_modelo.value}"),
                                 ft.PopupMenuItem(text=f"Placa - {input_placa.value}"),
                                 ft.PopupMenuItem(text=f"Ano de Fabricação - {input_ano_fabricacao.value}"),
                                 ft.PopupMenuItem(text=f"Marca - {input_marca.value}"),
@@ -137,26 +136,26 @@ def main(page: ft.Page):
         page.update()
 
         # chamar a função para pegar o JSON
-        dados = get_info_ordem()
+        ordens = get_info_ordem()
 
         progress.visible = False
         page.update()
 
         # Verificar se a API retornou erro
-        if "erro" in dados:
+        if "erro" in ordens:
             page.overlay.append(msg_erro)
             msg_erro.open = True
         else:
             lv_ordem.controls.clear()
-            for ordem in dados:
+            for ordem in ordens:
                 lv_ordem.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Ordem - {input_veiculo_associado.value}"),
+                        title=ft.Text(f"Veículo - {ordem['veiculo_associado']}"),
+                        subtitle=ft.Text(f"Data de Abertura - {ordem['data_abertura']}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Data de Abertura - {input_data_abertura.value}"),
                                 ft.PopupMenuItem(text=f"Descrição do Serviço - {input_descricao_servico.value}"),
                                 ft.PopupMenuItem(text=f"Status - {input_status.value}"),
                                 ft.PopupMenuItem(text=f"Valor Estimado - {input_valor_estimado.value}"),
