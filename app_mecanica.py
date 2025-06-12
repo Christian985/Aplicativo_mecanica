@@ -77,9 +77,9 @@ def main(page: ft.Page):
                             icon=ft.Icons.MORE_VERT,
                             items=[
                                 ft.PopupMenuItem(text=f"Modelo - {input_modelo.value}"),
-                                ft.PopupMenuItem(text=f"Placa: - {input_placa.value}"),
+                                ft.PopupMenuItem(text=f"Placa - {input_placa.value}"),
                                 ft.PopupMenuItem(text=f"Ano de Fabricação - {input_ano_fabricacao.value}"),
-                                ft.PopupMenuItem(text=f"Marca: - {input_marca.value}"),
+                                ft.PopupMenuItem(text=f"Marca - {input_marca.value}"),
                             ]
                         )
                     )
@@ -157,7 +157,7 @@ def main(page: ft.Page):
                                 ft.PopupMenuItem(text=f"Data de Abertura - {input_data_abertura.value}"),
                                 ft.PopupMenuItem(text=f"Descrição do Serviço - {input_descricao_servico.value}"),
                                 ft.PopupMenuItem(text=f"Status - {input_status.value}"),
-                                ft.PopupMenuItem(text=f"Valor Estimado- {input_valor_estimado.value}"),
+                                ft.PopupMenuItem(text=f"Valor Estimado - {input_valor_estimado.value}"),
                             ]
                         )
                     )
@@ -178,20 +178,26 @@ def main(page: ft.Page):
                     AppBar(title=Text("Home"), bgcolor=Colors.PURPLE_900),
                     ft.Button(
                         text="Cadastrar Veículos",
-
                         on_click=lambda _: page.go("/cadastro_veiculos"),
                         bgcolor=Colors.PURPLE_900,
+                        height=50,
+                        width=340,
+
                     ),
                     ft.Button(
                         text="Cadastrar Clientes",
                         on_click=lambda _: page.go("/cadastro_clientes"),
                         bgcolor=Colors.PURPLE_900,
+                        height=50,
+                        width=340,
 
                     ),
                     ft.Button(
                         text="Cadastrar Ordens",
                         on_click=lambda _: page.go("/cadastro_ordens"),
                         bgcolor=Colors.PURPLE_900,
+                        height=50,
+                        width=340,
                     )
                 ],
                 bgcolor=Colors.GREY_900,
@@ -214,12 +220,16 @@ def main(page: ft.Page):
                             text="Salvar",
                             on_click=lambda _: mostrar_veiculos(e),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         ),
                         # Irá mostrar os Dados
                         ft.Button(
                             text="Exibir lista",
                             on_click=lambda _: page.go("/lista_veiculos"),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         ),
                         ft.Column(
                             [
@@ -244,6 +254,8 @@ def main(page: ft.Page):
                             text="Voltar",
                             on_click=lambda _: page.go("/"),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         )
                     ],
                 )
@@ -264,11 +276,15 @@ def main(page: ft.Page):
                             text="Salvar",
                             on_click=lambda _: mostrar_clientes(e),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         ),
                         ft.Button(
                             text="Exibir lista",
                             on_click=lambda _: page.go("/lista_clientes"),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         )
                     ]
                 )
@@ -286,6 +302,8 @@ def main(page: ft.Page):
                             text="Voltar",
                             on_click=lambda _: page.go("/"),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         )
                     ],
                 )
@@ -306,11 +324,15 @@ def main(page: ft.Page):
                             text="Salvar",
                             on_click=lambda _: mostrar_ordens(e),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         ),
                         ft.Button(
                             text="Exibir lista",
                             on_click=lambda _: page.go("/lista_ordens"),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         )
                     ]
                 )
@@ -328,6 +350,8 @@ def main(page: ft.Page):
                             text="Voltar",
                             on_click=lambda _: page.go("/"),
                             bgcolor=Colors.PURPLE_900,
+                            height=50,
+                            width=340,
                         )
                     ],
                 )
@@ -354,25 +378,25 @@ def main(page: ft.Page):
         bgcolor=Colors.RED
     )
     # VEÍCULOS
-    input_cliente_associado = ft.TextField(label="Cliente Associado", bgcolor=Colors.DEEP_PURPLE)
-    input_modelo = ft.TextField(label="Modelo", bgcolor=Colors.DEEP_PURPLE)
-    input_placa = ft.TextField(label="Placa", bgcolor=Colors.DEEP_PURPLE)
-    input_ano_fabricacao = ft.TextField(label="Ano de Fabricacao", bgcolor=Colors.DEEP_PURPLE)
-    input_marca = ft.TextField(label="Marca", bgcolor=Colors.DEEP_PURPLE)
+    input_cliente_associado = ft.TextField(label="Cliente Associado", bgcolor=Colors.PURPLE_900)
+    input_modelo = ft.TextField(label="Modelo", bgcolor=Colors.PURPLE_900)
+    input_placa = ft.TextField(label="Placa", bgcolor=Colors.PURPLE_900)
+    input_ano_fabricacao = ft.TextField(label="Ano de Fabricacao", bgcolor=Colors.PURPLE_900)
+    input_marca = ft.TextField(label="Marca", bgcolor=Colors.PURPLE_900)
 
     # CLIENTES
-    input_nome = ft.TextField(label="Nome", bgcolor=Colors.DEEP_PURPLE)
-    input_cpf = ft.TextField(label="CPF", bgcolor=Colors.DEEP_PURPLE)
-    input_telefone = ft.TextField(label="Telefone", bgcolor=Colors.DEEP_PURPLE)
-    input_endereco = ft.TextField(label="Endereço", bgcolor=Colors.DEEP_PURPLE)
-    input_email = ft.TextField(label="E-mail", bgcolor=Colors.DEEP_PURPLE)
+    input_nome = ft.TextField(label="Nome", bgcolor=Colors.PURPLE_900)
+    input_cpf = ft.TextField(label="CPF", bgcolor=Colors.PURPLE_900)
+    input_telefone = ft.TextField(label="Telefone", bgcolor=Colors.PURPLE_900)
+    input_endereco = ft.TextField(label="Endereço", bgcolor=Colors.PURPLE_900)
+    input_email = ft.TextField(label="E-mail", bgcolor=Colors.PURPLE_900)
 
     # ORDENS
-    input_veiculo_associado = ft.TextField(label="Veículo Associado", bgcolor=Colors.DEEP_PURPLE)
-    input_data_abertura = ft.TextField(label="Data abertura", bgcolor=Colors.DEEP_PURPLE)
-    input_descricao_servico = ft.TextField(label="Descrição de Serviço", bgcolor=Colors.DEEP_PURPLE)
-    input_status = ft.TextField(label="Status", hint_text="Ex: Em andamento", bgcolor=Colors.DEEP_PURPLE)
-    input_valor_estimado = ft.TextField(label="Valor Estimado", hint_text="$", bgcolor=Colors.DEEP_PURPLE)
+    input_veiculo_associado = ft.TextField(label="Veículo Associado", bgcolor=Colors.PURPLE_900)
+    input_data_abertura = ft.TextField(label="Data abertura", bgcolor=Colors.PURPLE_900)
+    input_descricao_servico = ft.TextField(label="Descrição de Serviço", bgcolor=Colors.PURPLE_900)
+    input_status = ft.TextField(label="Status", hint_text="Ex: Em andamento", bgcolor=Colors.PURPLE_900)
+    input_valor_estimado = ft.TextField(label="Valor Estimado", hint_text="$", bgcolor=Colors.PURPLE_900)
 
     lv_veiculo = ft.ListView(
         height=500,
