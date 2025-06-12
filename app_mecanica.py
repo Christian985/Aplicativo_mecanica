@@ -378,8 +378,7 @@ def main(page: ft.Page):
     lv_veiculo = ft.ListView(
         height=500,
         spacing=1,
-        divider_thickness=1
-
+        divider_thickness=1,
     )
 
     lv_cliente = ft.ListView(
