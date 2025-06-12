@@ -9,7 +9,7 @@ from flet.core.types import FontWeight, MainAxisAlignment, CrossAxisAlignment
 def main(page: ft.Page):
     # Configurações
     page.title = "Mecânica"
-    page.theme_mode = ft.ThemeMode.DARK  # ou ft.ThemeMode.DARK
+    page.theme_mode = ft.ThemeMode.DARK  # ou ft.ThemeMode.WHITE
     page.window.width = 375
     page.window.height = 667
 
@@ -198,6 +198,7 @@ def main(page: ft.Page):
                         bgcolor=Colors.PURPLE_900,
                         height=50,
                         width=340,
+
                     )
                 ],
                 bgcolor=Colors.GREY_900,
