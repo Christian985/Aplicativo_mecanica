@@ -72,7 +72,7 @@ def main(page: ft.Page):
                 lv_veiculo.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Veículo {input_cliente_associado.value}"),
+                        title=ft.Text(f"Veículo - {input_cliente_associado.value}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
@@ -113,11 +113,10 @@ def main(page: ft.Page):
                 lv_cliente.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Cliente {cliente.value}"),
+                        title=ft.Text(f"Cliente - {input_nome.value}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Nome - {input_nome.value}"),
                                 ft.PopupMenuItem(text=f"CPF - {input_cpf.value}"),
                                 ft.PopupMenuItem(text=f"Email - {input_email.value}"),
                                 ft.PopupMenuItem(text=f"Telefone - {input_telefone.value}"),
@@ -151,25 +150,20 @@ def main(page: ft.Page):
             lv_ordem.controls.clear()
             for ordem in dados["lista_de_ordens"]:
                 lv_ordem.controls.append(
-                    ft.Text(f'Veículo Associado: {ordem["veiculo_associado"]}'),
+                    ft.ListTile(
+                        leading=ft.Icon(ft.Icons.PERSON),
+                        title=ft.Text(f"Ordem {input_veiculo_associado.value}"),
+                        trailing=ft.PopupMenuButton(
+                            icon=ft.Icons.MORE_VERT,
+                            items=[
+                                ft.PopupMenuItem(text=f"Data de Abertura - {input_data_abertura.value}"),
+                                ft.PopupMenuItem(text=f"Descrição do Serviço - {input_descricao_servico.value}"),
+                                ft.PopupMenuItem(text=f"Status - {input_status.value}"),
+                                ft.PopupMenuItem(text=f"Valor Estimado- {input_valor_estimado.value}"),
+                            ]
+                        )
+                    )
                 )
-
-                lv_ordem.controls.append(
-                    ft.Text(f'Data de Abertura: {ordem["data_abertura"]}'),
-                )
-
-                lv_ordem.controls.append(
-                    ft.Text(f'Descrição do Serviço: {ordem["descricao_servico"]}'),
-                )
-
-                lv_ordem.controls.append(
-                    ft.Text(f'Status: {ordem["status"]}'),
-                )
-
-                lv_ordem.controls.append(
-                    ft.Text(f'Valor Estimado: {ordem["valor_estimado"]}'),
-                )
-
             msg_sucesso.content = ft.Text("Entrada Válida")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
