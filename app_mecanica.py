@@ -72,10 +72,11 @@ def main(page: ft.Page):
                 lv_veiculo.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Cliente Associado - {input_cliente_associado.value}"),
+                        title=ft.Text(f"Veículo {input_cliente_associado.value}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
+                                ft.PopupMenuItem(text=f"Cliente Associado - {input_cliente_associado.value}"),
                                 ft.PopupMenuItem(text=f"Modelo - {input_modelo.value}"),
                                 ft.PopupMenuItem(text=f"Placa: - {input_placa.value}"),
                                 ft.PopupMenuItem(text=f"Ano de Fabricação - {input_ano_fabricacao.value}"),
@@ -108,23 +109,23 @@ def main(page: ft.Page):
             msg_erro.open = True
         else:
             lv_cliente.controls.clear()
-            for cliente in dados['lista_de_clientes']:
+            for cliente in dados:
                 lv_cliente.controls.append(
-                    ft.Text(f'Nome: {cliente["nome"]}'),
+                    ft.ListTile(
+                        leading=ft.Icon(ft.Icons.PERSON),
+                        title=ft.Text(f"Cliente {cliente.value}"),
+                        trailing=ft.PopupMenuButton(
+                            icon=ft.Icons.MORE_VERT,
+                            items=[
+                                ft.PopupMenuItem(text=f"Nome - {input_nome.value}"),
+                                ft.PopupMenuItem(text=f"CPF - {input_cpf.value}"),
+                                ft.PopupMenuItem(text=f"Email - {input_email.value}"),
+                                ft.PopupMenuItem(text=f"Telefone - {input_telefone.value}"),
+                                ft.PopupMenuItem(text=f"Endereço - {input_endereco.value}"),
+                            ]
+                        )
+                    )
                 )
-                lv_cliente.controls.append(
-                    ft.Text(f'Cpf: {cliente["cpf"]}'),
-                )
-                lv_cliente.controls.append(
-                    ft.Text(f'Email: {cliente["email"]}'),
-                )
-                lv_cliente.controls.append(
-                    ft.Text(f'Telefone: {cliente["telefone"]}'),
-                )
-                lv_cliente.controls.append(
-                    ft.Text(f'Endereço: {cliente["endereco"]}'),
-                )
-
             msg_sucesso.content = ft.Text("Entrada Válida")
             page.overlay.append(msg_sucesso)
             msg_sucesso.open = True
