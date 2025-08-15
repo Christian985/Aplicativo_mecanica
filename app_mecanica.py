@@ -31,31 +31,46 @@ def main(page: ft.Page):
     def post_nova_ordem():
         url = f"http://10.135.235.34:5001/ordems"
         dados = {
-            "veiculo_associado": str(),
-            "data_abertura": str(),
-            "descricao_servico": str(),
-            "status": str(),
-            "valor_estimado": str()
+            "veiculo_associado": input_veiculo_associado.value,
+            "data_abertura": input_data_abertura.value,
+            "descricao_servico": input_descricao_servico.value,
+            "status": input_status.value,
+            "valor_estimado": input_valor_estimado.value,
         }
+
+        resposta = requests.post(url, json=dados)
+
+        print("Nova ordem:", resposta.json())
+        return resposta.json()
+
+    # Ao clicar em salvar
+    def click_nova_ordem():
+        dados = post_nova_ordem()
+
+        if dados.status_code == 201:
+            print("Nova ordem cadastrada com sucesso!")
+        else:
+            print("Erro ao cadastrar nova ordem!")
+
 
     def post_novo_cliente():
         url = f"http://10.135.235.34:5001/clientes"
         dados = {
-            "nome": str(),
-            "cpf": str(),
-            "telefone": str(),
-            "endereco": str(),
-            "email": str(),
+            "nome": input_nome.value,
+            "cpf": input_cpf.value,
+            "telefone": input_telefone.value,
+            "endereco": input_endereco.value,
+            "email": input_email.value,
         }
 
     def post_novo_veiculo():
         url = f"http://10.135.235.34:5001/veiculos"
         dados = {
-            "cliente_associado": str(),
-            "modelo": str(),
-            "placa": str(),
-            "ano_fabricacao": str(),
-            "marca": str(),
+            "cliente_associado": input_cliente_associado.value,
+            "modelo": input_modelo.value,
+            "placa": input_placa.value,
+            "ano_fabricacao": input_ano_fabricacao.value,
+            "marca": input_marca.value,
         }
 
     # Salva as informações das Ordens
