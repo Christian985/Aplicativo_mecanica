@@ -28,9 +28,50 @@ def main(page: ft.Page):
         else:
             return {"erro": resposta.json()}
 
+    def post_nova_ordem():
+        url = f"http://10.135.235.34:5001/ordems"
+        dados = {
+            "veiculo_associado": str(),
+            "data_abertura": str(),
+            "descricao_servico": str(),
+            "status": str(),
+            "valor_estimado": str()
+        }
+
+    # Salva as informações das Ordens
+    def salvar_ordem(e):
+        # Caso eles não possuam valores
+        if input_veiculo_associado.value == "" or input_data_abertura.value == "" or input_descricao_servico.value == "" or input_status.value == "" or input_valor_estimado.value == "":
+            # Overlay vai apagar a mensagem anterior
+            page.overlay.append(msg_erro)
+            # Vai abrir a mensagem
+            msg_erro.open = True
+            page.update()
+        else:
+            obj_ordem = Ordem(
+                veiculo_associado=input_veiculo_associado.value,
+                data_abertura=input_data_abertura.value,
+                descricao_servico=input_descricao_servico.value,
+                status=input_status.value,
+                valor_estimado=input_valor_estimado.value,
+
+            )
+            # Adiciona o Valor de veiculo_associado, data_abertura, descricao_servico, status e valor_estimado na Lista
+            input_veiculo_associado.value = ""
+            input_data_abertura.value = ""
+            input_descricao_servico.value = ""
+            input_status.value = ""
+            input_valor_estimado.value = ""
+
+            # Overlay vai apagar a mensagem anterior
+            page.overlay.append(msg_sucesso)
+            # Vai abrir a mensagem
+            msg_sucesso.open = True
+            page.update()
+
     # Pega informações dos Veículos
     def get_info_veiculo():
-        url = f"http://10.135.232.27:5001/veiculos"
+        url = f"http://10.135.235.34:5001/veiculos"
 
         resposta = requests.get(url)
 
@@ -42,7 +83,7 @@ def main(page: ft.Page):
 
     # Pega informações das Ordens
     def get_info_ordem():
-        url = f"http://10.135.232.27:5001/ordem"
+        url = f"http://10.135.235.34:5001/ordem"
 
         resposta = requests.get(url)
 
@@ -217,7 +258,7 @@ def main(page: ft.Page):
                         # Irá salvar os Dados
                         ft.Button(
                             text="Salvar",
-                            on_click=lambda _: get_info_veiculo,
+                            on_click=lambda _: post,
                             bgcolor=Colors.PURPLE_900,
                             height=50,
                             width=340,
