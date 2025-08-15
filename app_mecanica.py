@@ -63,6 +63,11 @@ def main(page: ft.Page):
             "email": input_email.value,
         }
 
+        resposta = requests.post(url, json=dados)
+
+        print("Novo cliente:", resposta.json())
+        return resposta.json()
+
     def post_novo_veiculo():
         url = f"http://10.135.235.34:5001/veiculos"
         dados = {
@@ -72,6 +77,11 @@ def main(page: ft.Page):
             "ano_fabricacao": input_ano_fabricacao.value,
             "marca": input_marca.value,
         }
+
+        resposta = requests.post(url, json=dados)
+
+        print("Novo veiculo:", resposta.json())
+        return resposta.json()
 
     # Salva as informações das Ordens
     def salvar_ordem(e):
