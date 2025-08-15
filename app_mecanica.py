@@ -151,14 +151,14 @@ def main(page: ft.Page):
                 lv_ordem.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Ordem/Veículo - {ordem['veiculo_associado']}"),
-                        subtitle=ft.Text(f"Data de Abertura - {ordem['data_abertura']}"),
+                        title=ft.Text(f"Ordem/Veículo - {ordem["veiculo_associado"]}"),
+                        subtitle=ft.Text(f"Data de Abertura - {ordem["data_abertura"]}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Descrição do Serviço - {ordem['descricao_servico']}"),
-                                ft.PopupMenuItem(text=f"Status - {ordem['status']}"),
-                                ft.PopupMenuItem(text=f"Valor Estimado - {ordem['valor_estimado']}"),
+                                ft.PopupMenuItem(text=f"Descrição do Serviço - {ordem["descricao_servico"]}"),
+                                ft.PopupMenuItem(text=f"Status - {ordem["status"]}"),
+                                ft.PopupMenuItem(text=f"Valor Estimado - {ordem["valor_estimado"]}"),
                             ]
                         )
                     )
