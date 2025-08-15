@@ -73,14 +73,14 @@ def main(page: ft.Page):
                 lv_veiculo.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Veículo - {veiculo['modelo']}"),
-                        subtitle=ft.Text(f"cliente - {veiculo['cliente_associado']}"),
+                        title=ft.Text(f"Veículo - {veiculo["modelo"]}"),
+                        subtitle=ft.Text(f"cliente - {veiculo["cliente_associado"]}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Placa - {veiculo['placa']}"),
-                                ft.PopupMenuItem(text=f"Ano de Fabricação - {veiculo['ano_fabricacao']}"),
-                                ft.PopupMenuItem(text=f"Marca - {veiculo['marca']}"),
+                                ft.PopupMenuItem(text=f"Placa - {veiculo["placa"]}"),
+                                ft.PopupMenuItem(text=f"Ano de Fabricação - {veiculo["ano_fabricacao"]}"),
+                                ft.PopupMenuItem(text=f"Marca - {veiculo["marca"]}"),
                             ]
                         )
                     )
