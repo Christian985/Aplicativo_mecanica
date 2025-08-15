@@ -68,6 +68,15 @@ def main(page: ft.Page):
         print("Novo cliente:", resposta.json())
         return resposta.json()
 
+    # Ao clicar em salvar
+    def click_novo_cliente():
+        dados = post_novo_cliente()
+
+        if dados.status_code == 201:
+            print("Novo cliente cadastrado com sucesso!")
+        else:
+            print("Erro ao cadastrar novo cliente!")
+
     def post_novo_veiculo():
         url = f"http://10.135.235.34:5001/veiculos"
         dados = {
@@ -82,6 +91,16 @@ def main(page: ft.Page):
 
         print("Novo veiculo:", resposta.json())
         return resposta.json()
+
+    # Ao clicar em salvar
+    def click_novo_veiculo():
+        dados = post_novo_veiculo()
+
+        if dados.status_code == 201:
+            print("Novo veiculo cadastrado com sucesso!")
+        else:
+            print("Erro ao cadastrar novo veiculo!")
+
 
     # Salva as informações das Ordens
     def salvar_ordem(e):
