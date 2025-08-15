@@ -38,6 +38,26 @@ def main(page: ft.Page):
             "valor_estimado": str()
         }
 
+    def post_novo_cliente():
+        url = f"http://10.135.235.34:5001/clientes"
+        dados = {
+            "nome": str(),
+            "cpf": str(),
+            "telefone": str(),
+            "endereco": str(),
+            "email": str(),
+        }
+
+    def post_novo_veiculo():
+        url = f"http://10.135.235.34:5001/veiculos"
+        dados = {
+            "cliente_associado": str(),
+            "modelo": str(),
+            "placa": str(),
+            "ano_fabricacao": str(),
+            "marca": str(),
+        }
+
     # Salva as informações das Ordens
     def salvar_ordem(e):
         # Caso eles não possuam valores
