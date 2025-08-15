@@ -18,7 +18,7 @@ def main(page: ft.Page):
     # Consome e mostra o JSON no app
     # Pega informações dos Clientes
     def get_info_cliente():
-        url = f"http://10.135.232.27:5001/clientes"
+        url = f"http://10.135.235.34:5001/clientes"
 
         resposta = requests.get(url)
 
@@ -26,7 +26,7 @@ def main(page: ft.Page):
             print("Info Clientes:", resposta.json())
             return resposta.json()
         else:
-            return {"Erro": resposta.json()}
+            return {"erro": resposta.json()}
 
     # Pega informações dos Veículos
     def get_info_veiculo():
@@ -108,18 +108,18 @@ def main(page: ft.Page):
             msg_erro.open = True
         else:
             lv_cliente.controls.clear()
-            for cliente in clientes:
+            for cliente in clientes["clientes"]:
                 lv_cliente.controls.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.PERSON),
-                        title=ft.Text(f"Cliente - {cliente['nome']}"),
-                        subtitle=ft.Text(f"CPF - {cliente['cpf']}"),
+                        title=ft.Text(f"Cliente - {cliente["nome"]}"),
+                        subtitle=ft.Text(f"CPF - {cliente["cpf"]}"),
                         trailing=ft.PopupMenuButton(
                             icon=ft.Icons.MORE_VERT,
                             items=[
-                                ft.PopupMenuItem(text=f"Email - {cliente['email']}"),
-                                ft.PopupMenuItem(text=f"Telefone - {cliente['telefone']}"),
-                                ft.PopupMenuItem(text=f"Endereço - {cliente['endereco']}"),
+                                ft.PopupMenuItem(text=f"Email - {cliente["email"]}"),
+                                ft.PopupMenuItem(text=f"Telefone - {cliente.telefone}"),
+                                ft.PopupMenuItem(text=f"Endereço - {cliente.endereco}"),
                             ]
                         )
                     )
@@ -183,7 +183,6 @@ def main(page: ft.Page):
                         bgcolor=Colors.PURPLE_900,
                         height=50,
                         width=340,
-
                     ),
                     ft.Button(
                         text="Cadastrar Clientes",
@@ -191,7 +190,6 @@ def main(page: ft.Page):
                         bgcolor=Colors.PURPLE_900,
                         height=50,
                         width=340,
-
                     ),
                     ft.Button(
                         text="Cadastrar Ordens",
@@ -199,7 +197,6 @@ def main(page: ft.Page):
                         bgcolor=Colors.PURPLE_900,
                         height=50,
                         width=340,
-
                     )
                 ],
                 bgcolor=Colors.GREY_900,
@@ -296,7 +293,7 @@ def main(page: ft.Page):
             mostrar_clientes(e)
             page.views.append(
                 View(
-                    "/Lista_clientes",
+                    "/lista_clientes",
                     [
                         AppBar(title=Text("Lista de Clientes"), bgcolor=Colors.PURPLE_900),
                         lv_cliente,
