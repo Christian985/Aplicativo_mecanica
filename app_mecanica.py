@@ -118,8 +118,8 @@ def main(page: ft.Page):
                             icon=ft.Icons.MORE_VERT,
                             items=[
                                 ft.PopupMenuItem(text=f"Email - {cliente["email"]}"),
-                                ft.PopupMenuItem(text=f"Telefone - {cliente.telefone}"),
-                                ft.PopupMenuItem(text=f"Endereço - {cliente.endereco}"),
+                                ft.PopupMenuItem(text=f"Telefone - {cliente["telefone"]}"),
+                                ft.PopupMenuItem(text=f"Endereço - {cliente["endereco"]}"),
                             ]
                         )
                     )
